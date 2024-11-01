@@ -148,6 +148,7 @@ public:
    */
   uint32_t getUniqueID();
 
+
   /**
    * @fn getSensorModel
    * @brief get sensor's model.
@@ -237,6 +238,14 @@ public:
    * @return return 7 bits I2C address
    */
   uint8_t getI2CAddress();
+
+  /**
+   * @fn setI2CAddress
+   * @brief set I2C address.
+   * @return return 7 bits I2C address
+   */
+  bool setI2CAddress(uint8_t addr);
+
 
   /**
    * @fn pinConfig

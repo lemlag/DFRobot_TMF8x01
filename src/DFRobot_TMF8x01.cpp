@@ -510,6 +510,16 @@ uint8_t DFRobot_TMF8x01::getI2CAddress(){
   return _addr;
 }
 
+uint8_t DFRobot_TMF8x01::setI2CAddress(uint8_t addr){
+  if((addr < 1) || (addr > 127)) return false;
+  command = 0x49;
+  writeReg(REG_MTF8x01_CMD_DATA0, 0x00, 1);
+  writeReg(REG_MTF8x01_CMD_DATA1, addr, 1);
+  writeReg(REG_MTF8x01_COMMAND, 0x49, 1);
+  _addr = addr;
+  return true;
+}
+
 void DFRobot_TMF8x01::pinConfig(ePin_t pin, ePinControl_t config){
   uint8_t data[] = {0x0f, 0, 0x0f};
   if((pin > ePINTotal) || (config > ePinOutputHigh)) return;
