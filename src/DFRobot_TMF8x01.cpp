@@ -608,7 +608,7 @@ uint8_t DFRobot_TMF8x01::calChecksum(uint8_t *data, uint8_t len){
 bool DFRobot_TMF8x01::readStatusACK(){
   uint32_t value = 0;
   readReg(0x08, &value, 3);
-  if(value = 0xFF0000) return true;
+  if(value == 0xFF0000) return true;
   else return false;
 }
 
