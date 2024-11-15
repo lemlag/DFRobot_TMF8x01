@@ -514,13 +514,13 @@ uint8_t DFRobot_TMF8x01::setI2CAddress(uint8_t addr){
   Serial.print("Resetting I2C address to: ");
   Serial.println(addr);
   if((addr < 1) || (addr > 127)) return 1;
+  uint8_t newAddr = addr << 1;
   Serial.println("Address is valid");
-  // command = 0x49;
   uint8_t datum = 0x00;
   uint8_t *data = &datum;
   writeReg(REG_MTF8x01_CMD_DATA0, data, 1);
   Serial.println("Wrote 0 to CMD_DATA0");
-  *data = addr;
+  *data = newAddr;
   writeReg(REG_MTF8x01_CMD_DATA1, data, 1);
   Serial.println("Wrote new address to CMD_DATA1");
   datum = 0x49;
