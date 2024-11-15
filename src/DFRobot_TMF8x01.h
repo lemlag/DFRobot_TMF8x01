@@ -244,7 +244,7 @@ public:
    * @brief set I2C address.
    * @return return 7 bits I2C address
    */
-  bool setI2CAddress(uint8_t addr);
+  uint8_t setI2CAddress(uint8_t addr);
 
 
   /**

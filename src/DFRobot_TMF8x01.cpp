@@ -511,13 +511,18 @@ uint8_t DFRobot_TMF8x01::getI2CAddress(){
 }
 
 uint8_t DFRobot_TMF8x01::setI2CAddress(uint8_t addr){
-  if((addr < 1) || (addr > 127)) return false;
-  command = 0x49;
+  Serial.print("Resetting I2C address to: ");
+  Serial.println(addr);
+  if((addr < 1) || (addr > 127)) return 1;
+  // command = 0x49;
   writeReg(REG_MTF8x01_CMD_DATA0, 0x00, 1);
+  Serial.println("Wrote 0 to CMD_DATA0");
   writeReg(REG_MTF8x01_CMD_DATA1, addr, 1);
+  Serial.println("Wrote new address to CMD_DATA1");
   writeReg(REG_MTF8x01_COMMAND, 0x49, 1);
+  Serial.println("Wrote 0x49 to COMMAND");
   _addr = addr;
-  return true;
+  return 0;
 }
 
 void DFRobot_TMF8x01::pinConfig(ePin_t pin, ePinControl_t config){
