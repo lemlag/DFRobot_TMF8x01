@@ -516,10 +516,15 @@ uint8_t DFRobot_TMF8x01::setI2CAddress(uint8_t addr){
   if((addr < 1) || (addr > 127)) return 1;
   Serial.println("Address is valid");
   // command = 0x49;
-  writeReg(REG_MTF8x01_CMD_DATA0, 0x00, 1);
+  uint8_t datum = 0x00;
+  uint8_t *data = {datum};
+  writeReg(REG_MTF8x01_CMD_DATA0, (void *) data, 1);
   Serial.println("Wrote 0 to CMD_DATA0");
-  writeReg(REG_MTF8x01_CMD_DATA1, addr, 1);
+  *data = addr;
+  writeReg(REG_MTF8x01_CMD_DATA1, data, 1);
   Serial.println("Wrote new address to CMD_DATA1");
+  datum = 0x49;
+  *data = datum;
   writeReg(REG_MTF8x01_COMMAND, 0x49, 1);
   Serial.println("Wrote 0x49 to COMMAND");
   _addr = addr;
