@@ -525,7 +525,7 @@ uint8_t DFRobot_TMF8x01::setI2CAddress(uint8_t addr){
   Serial.println("Wrote new address to CMD_DATA1");
   datum = 0x49;
   *data = datum;
-  writeReg(REG_MTF8x01_COMMAND, 0x49, 1);
+  writeReg(REG_MTF8x01_COMMAND, data, 1);
   Serial.println("Wrote 0x49 to COMMAND");
   _addr = addr;
   return 0;
